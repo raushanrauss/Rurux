@@ -1,14 +1,21 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useContext, useEffect, useState } from "react";
-import { StudentContext } from "../../context/student";
+import { StudentContext, Stream, Subject } from "../../context/student";
 
-const Profile = () => {
-  const [details, setDetails] = useState<{ [key: string]: any }>({});
+const Profile: React.FC = () => {
+  const [details, setDetails] = useState<{ name: string; stream: number; subject: number } | null>(null);
   const { streams, subjects } = useContext(StudentContext);
+
+  useEffect(() => {
+    getDetails();
+  }, []);
+
   const getDetails = () => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
     fetch("http://localhost:3000/user/profile", {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((res) => res.json())
@@ -16,24 +23,26 @@ const Profile = () => {
         if (res.error) {
           throw Error(res.error);
         }
-        return res;
+        setDetails(res);
       })
-      .then((res) => setDetails(res))
       .catch((err) => alert(err));
   };
-  useEffect(() => {
-    getDetails();
-  }, []);
+
+  if (!details) return null; 
+
   return (
-    <div>
-      Profile Page:
-      <div>Name: {details.name}</div>
-      <div>
-        Stream: {streams.find((stream) => stream.id == details.stream)?.name}
+    <div className="bg-white shadow-md rounded-md p-6">
+      <h2 className="text-2xl font-bold mb-4">Profile Page:</h2>
+      <div className="mb-4">
+        <span className="font-bold">Name:</span> {details.name}
+      </div>
+      <div className="mb-4">
+        <span className="font-bold">Stream:</span>{" "}
+        {streams.find((stream: Stream) => stream.id === details.stream)?.name}
       </div>
       <div>
-        Subject:{" "}
-        {subjects.find((subject) => subject.id == details.subject)?.name}
+        <span className="font-bold">Subject:</span>{" "}
+        {subjects.find((subject: Subject) => subject.id === details.subject)?.name}
       </div>
     </div>
   );
