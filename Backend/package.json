@@ -12,7 +12,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "server": "nodemon app.js"
+    "server": "nodemon app.js",
+    "prisma":"prisma migrate dev && prisma generate "
   },
   "keywords": [],
   "author": "",
