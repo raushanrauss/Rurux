@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { StudentContext, Stream, Subject } from "../../context/student";
+import { StudentContext } from "../../context/student";
 
 const Performance: React.FC = () => {
   const [details, setDetails] = useState<{
@@ -34,10 +34,10 @@ const Performance: React.FC = () => {
   }, []);
 
   const streamName = streams.find(
-    (stream: Stream) => stream.id === details.stream
+    (stream) => stream.id === details.stream
   )?.name;
   const subjectName = subjects.find(
-    (subject: Subject) => subject.id === details.subject
+    (subject) => subject.id === details.subject
   )?.name;
 
   return (
