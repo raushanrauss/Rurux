@@ -65,7 +65,7 @@ const Stream: React.FC = () => {
 
   const handleSubmitEdit = () => {
     if (!editingStream) return;
-
+    console.log(editedStreamName);
     fetch(`https://rurux-1.onrender.com/stream/edit/${editingStream.id}`, {
       method: "PUT",
       headers: {

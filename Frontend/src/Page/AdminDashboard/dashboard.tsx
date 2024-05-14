@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { StudentContext } from "../../context/student";
 
 // Define an interface for the structure of each student object
 interface Student {
@@ -9,6 +10,7 @@ interface Student {
 }
 
 const Dashboard = () => {
+  const { streams, subjects } = useContext(StudentContext);
   const [students, setStudents] = useState<Student[]>([]); // Specify Student[] as the type for students
   console.log(students);
 
@@ -36,8 +38,10 @@ const Dashboard = () => {
             <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
               <td className="border px-4 py-2">{student.name}</td>
               <td className="border px-4 py-2">{student.email}</td>
-              <td className="border px-4 py-2">{student.stream}</td>
-              <td className="border px-4 py-2">{student.subject}</td>
+              <td className="border px-4 py-2">
+                {streams.find((stream) => stream.id == student.stream).name}
+              </td>
+              <td className="border px-4 py-2">{subjects.find((stream) => stream.id == student.stream).name}</td>
             </tr>
           ))}
         </tbody>

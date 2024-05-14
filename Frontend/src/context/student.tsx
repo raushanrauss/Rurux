@@ -6,6 +6,7 @@ export const StudentContext = createContext<{ [key: string]: any }>({});
 function StudentContextProvider({ children }: { children: ReactNode }) {
   const [streams, setStreams] = useState<{ [key: string]: any }[]>([]);
   const [subjects, setSubjects] = useState<{ [key: string]: any }[]>([]);
+  const [marks, setMarks] = useState<{ [key: string]: any }[]>([]);
   const getStreams = async () => {
     fetch("https://rurux-1.onrender.com/public/streams")
       .then((res) => res.json())
@@ -31,12 +32,24 @@ function StudentContextProvider({ children }: { children: ReactNode }) {
       .then((res) => setSubjects(res))
       .catch((err) => alert(err));
   };
+  const getMarks = async () => {
+    fetch("https://rurux-1.onrender.com/public/mark")
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.error) {
+          throw Error(res.error);
+        }
+        return res;
+      })
+      .then((res) => setMarks(res))
+      .catch((err) => alert(err));
+  };
 
   useEffect(() => {
-    Promise.all([getStreams(), getSubjects()]);
+    Promise.all([getStreams(), getSubjects(),getMarks()]);
   }, []);
   return (
-    <StudentContext.Provider value={{ streams, subjects }}>
+    <StudentContext.Provider value={{ streams, subjects ,marks }}>
       {children}
     </StudentContext.Provider>
   );

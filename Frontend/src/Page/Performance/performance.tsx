@@ -7,7 +7,8 @@ const Performance: React.FC = () => {
     stream: number;
     subject: number;
   }>({ name: "", stream: 0, subject: 0 });
-  const { streams, subjects } = useContext(StudentContext);
+  const { streams, subjects,marks } = useContext(StudentContext);
+ console.log(marks)
 
   const getDetails = () => {
     const token = localStorage.getItem("token");
@@ -34,15 +35,15 @@ const Performance: React.FC = () => {
   }, []);
 
   const streamName = streams.find(
-    (stream) => stream.id === details.stream
+    (stream) => stream.id == details.stream
   )?.name;
   const subjectName = subjects.find(
-    (subject) => subject.id === details.subject
+    (subject) => subject.id == details.subject
   )?.name;
 
   return (
     <div>
-      Profile Page:
+   
       <div>Marks: {details.name}</div>
       <div>Stream: {streamName}</div>
       <div>Subject: {subjectName}</div>
