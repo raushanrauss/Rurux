@@ -2,7 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { StudentContext } from "../../context/student";
 
 const Profile: React.FC = () => {
-  const [details, setDetails] = useState<{ name: string; stream: number; subject: number } | null>(null);
+  const [details, setDetails] = useState<{
+    name: string;
+    stream: number;
+    subject: number;
+  } | null>(null);
   const { streams, subjects } = useContext(StudentContext);
 
   useEffect(() => {
@@ -13,7 +17,7 @@ const Profile: React.FC = () => {
     const token = localStorage.getItem("token");
     if (!token) return;
 
-    fetch("http://localhost:3000/user/profile", {
+    fetch("https://rurux-1.onrender.com/user/profile", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -28,7 +32,7 @@ const Profile: React.FC = () => {
       .catch((err) => alert(err));
   };
 
-  if (!details) return null; 
+  if (!details) return null;
 
   return (
     <div className="bg-white shadow-md rounded-md p-6">

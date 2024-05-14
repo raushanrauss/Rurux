@@ -16,7 +16,7 @@ const Stream: React.FC = () => {
   }, []);
 
   const fetchStreams = () => {
-    fetch("http://localhost:3000/stream/", {
+    fetch("https://rurux-1.onrender.com/stream/", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
       },
@@ -37,7 +37,7 @@ const Stream: React.FC = () => {
   };
 
   const handleAddStream = () => {
-    fetch("http://localhost:3000/stream/add", {
+    fetch("https://rurux-1.onrender.com/stream/add", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
@@ -66,7 +66,7 @@ const Stream: React.FC = () => {
   const handleSubmitEdit = () => {
     if (!editingStream) return;
 
-    fetch(`http://localhost:3000/stream/edit/${editingStream.id}`, {
+    fetch(`https://rurux-1.onrender.com/stream/edit/${editingStream.id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
@@ -89,7 +89,7 @@ const Stream: React.FC = () => {
   };
 
   const handleDelete = (id: number) => {
-    fetch(`http://localhost:3000/stream/delete/${id}`, {
+    fetch(`https://rurux-1.onrender.com/stream/delete/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
