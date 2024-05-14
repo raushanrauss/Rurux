@@ -16,7 +16,7 @@ const Stream: React.FC = () => {
   }, []);
 
   const fetchStreams = () => {
-    fetch("https://rurux-1.onrender.com/stream/", {
+    fetch("http://localhost:3000/stream/", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
       },
@@ -37,7 +37,7 @@ const Stream: React.FC = () => {
   };
 
   const handleAddStream = () => {
-    fetch("https://rurux-1.onrender.com/stream/add", {
+    fetch("http://localhost:3000/stream/add", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
@@ -66,47 +66,30 @@ const Stream: React.FC = () => {
   const handleSubmitEdit = () => {
     if (!editingStream) return;
 
-    // Check if editedStreamName is not null or undefined
-    if (!editedStreamName) {
-        alert("Please provide a valid stream name");
-        return;
-    }
-
-    console.log(editedStreamName);
-    fetch(`https://rurux-1.onrender.com/stream/edit/${editingStream.id}`, {
-        method: "PUT",
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name: editedStreamName }),
+    fetch(`http://localhost:3000/stream/edit/${editingStream.id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name: editedStreamName }),
     })
-    .then((res) => {
+      .then((res) => {
         if (res.ok) {
-            fetchStreams();
-            setEditingStream(null);
-            setEditedStreamName("");
+          fetchStreams();
+          setEditingStream(null);
+          setEditedStreamName("");
         } else {
-            // Check for specific error codes if available
-            if (res.status === 401) {
-                // Unauthorized error
-                throw new Error("Unauthorized access. Please login again.");
-            } else {
-                throw new Error("Failed to update stream. Please try again later.");
-            }
+          throw new Error("Network response was not ok");
         }
-    })
-    .catch((err) => {
-        // Log the error to console for debugging purposes
-        console.error(err);
-        // Provide user-friendly error message
-        alert("An error occurred while updating the stream. Please try again later.");
-    });
-};
-
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  };
 
   const handleDelete = (id: number) => {
-    fetch(`https://rurux-1.onrender.com/stream/delete/${id}`, {
+    fetch(`http://localhost:3000/stream/delete/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
