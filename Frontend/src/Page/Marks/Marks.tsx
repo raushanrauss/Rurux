@@ -91,7 +91,7 @@ const Marks: React.FC = () => {
   };
 
   const handleAddMark = () => {
-    fetch("https://rurux-1.onrender.com/mark/add", {
+    fetch("https://rurux-1.onrender.com/mark/create", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
