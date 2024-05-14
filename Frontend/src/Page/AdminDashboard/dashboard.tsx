@@ -39,9 +39,9 @@ const Dashboard = () => {
               <td className="border px-4 py-2">{student.name}</td>
               <td className="border px-4 py-2">{student.email}</td>
               <td className="border px-4 py-2">
-                {streams.find((stream) => stream.id == student.stream).name}
+                {streams.find((stream) => stream.id == student.stream)?.name}
               </td>
-              <td className="border px-4 py-2">{subjects.find((stream) => stream.id == student.stream).name}</td>
+              <td className="border px-4 py-2">{subjects.find((stream) => stream.id == student.stream)?.name}</td>
             </tr>
           ))}
         </tbody>

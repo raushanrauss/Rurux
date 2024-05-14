@@ -34,7 +34,7 @@ const Profile: React.FC = () => {
     <div className="bg-white shadow-md rounded-md p-6">
       <h2 className="text-2xl font-bold mb-4">Profile Page:</h2>
       <div className="mb-4">
-        <span className="font-bold">Name:</span> {details.name}
+        <span className="font-bold">Name:</span> {details?.name}
       </div>
       <div className="mb-4">
         <span className="font-bold">Stream:</span>{" "}
