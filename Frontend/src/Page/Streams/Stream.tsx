@@ -66,7 +66,7 @@ const Stream: React.FC = () => {
   const handleSubmitEdit = () => {
     if (!editingStream) return;
 
-    fetch(`https://rurux-1.onrender.com/stream/edit/${editingStream.id}`, {
+    fetch(`https://rurux-1.onrender.com/stream/update/${editingStream.id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
