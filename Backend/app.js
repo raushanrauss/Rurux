@@ -9,7 +9,7 @@ const adminAuth = require("./middlewares/adminAuth");
 const prisma = new PrismaClient();
 const cors = require("cors");
 const marksRouter = require("./Routes/marksRouter");
-const publicRouter = require("./Routes/PublicRouter");
+const publicRouter = require("./Routes/publicRouter");
 const app = express();
 app.use(cors());
 app.use(express.json());
