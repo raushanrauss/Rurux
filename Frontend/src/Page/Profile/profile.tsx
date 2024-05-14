@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { StudentContext, Stream, Subject } from "../../context/student";
+import { StudentContext } from "../../context/student";
 
 const Profile: React.FC = () => {
   const [details, setDetails] = useState<{ name: string; stream: number; subject: number } | null>(null);
@@ -38,11 +38,11 @@ const Profile: React.FC = () => {
       </div>
       <div className="mb-4">
         <span className="font-bold">Stream:</span>{" "}
-        {streams.find((stream: Stream) => stream.id == details.stream)?.name}
+        {streams.find((stream) => stream.id == details.stream)?.name}
       </div>
       <div>
         <span className="font-bold">Subject:</span>{" "}
-        {subjects.find((subject: Subject) => subject.id == details.subject)?.name}
+        {subjects.find((subject) => subject.id == details.subject)?.name}
       </div>
     </div>
   );

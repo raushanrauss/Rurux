@@ -7,8 +7,8 @@ const Performance: React.FC = () => {
     stream: number;
     subject: number;
   }>({ name: "", stream: 0, subject: 0 });
-  const { streams, subjects,marks } = useContext(StudentContext);
- console.log(marks)
+  const { streams, subjects } = useContext(StudentContext);
+ 
 
   const getDetails = () => {
     const token = localStorage.getItem("token");
