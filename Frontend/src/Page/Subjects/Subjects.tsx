@@ -69,7 +69,7 @@ const Subjects: React.FC = () => {
     if (!editingSubject) return;
 
     fetch(`https://rurux-1.onrender.com/subject/update/${editingSubject.id}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
         "Content-Type": "application/json",

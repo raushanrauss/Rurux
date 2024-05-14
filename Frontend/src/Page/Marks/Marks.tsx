@@ -70,7 +70,7 @@ const Marks: React.FC = () => {
     if (!editingMark) return;
 
     fetch(`https://rurux-1.onrender.com/mark/update/${editingMark.id}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
         "Content-Type": "application/json",

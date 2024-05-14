@@ -67,7 +67,7 @@ const Stream: React.FC = () => {
     if (!editingStream) return;
 
     fetch(`https://rurux-1.onrender.com/stream/update/${editingStream.id}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
         "Content-Type": "application/json",
