@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { StudentContext } from "../../context/student";
-import Performance from "../Performance/performance";
 const Profile: React.FC = () => {
   const [details, setDetails] = useState<{
     name: string;
@@ -31,31 +30,25 @@ const Profile: React.FC = () => {
       })
       .catch((err) => alert(err));
   };
-  const handlePerformance=()=>{
-    <Performance />
-  }
 
   if (!details) return null;
 
   return (
     <>
-    <div className="bg-white shadow-md rounded-md p-6">
-      <h2 className="text-2xl font-bold mb-4">Profile Page:</h2>
-      <div className="mb-4">
-        <span className="font-bold">Name:</span> {details.name}
+      <div className="bg-white shadow-md rounded-md p-6">
+        <h2 className="text-2xl font-bold mb-4">Profile Page:</h2>
+        <div className="mb-4">
+          <span className="font-bold">Name:</span> {details.name}
+        </div>
+        <div className="mb-4">
+          <span className="font-bold">Stream:</span>{" "}
+          {streams.find((stream) => stream.id == details.stream)?.name}
+        </div>
+        <div>
+          <span className="font-bold">Subject:</span>{" "}
+          {subjects.find((subject) => subject.id == details.subject)?.name}
+        </div>
       </div>
-      <div className="mb-4">
-        <span className="font-bold">Stream:</span>{" "}
-        {streams.find((stream) => stream.id == details.stream)?.name}
-      </div>
-      <div>
-        <span className="font-bold">Subject:</span>{" "}
-        {subjects.find((subject) => subject.id == details.subject)?.name}
-      </div>
-     
-    </div>
-    <Performance />
-    <div><button onClick={handlePerformance}>Click to see my performance</button></div>
     </>
   );
 };

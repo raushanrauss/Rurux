@@ -65,28 +65,45 @@ const Stream: React.FC = () => {
 
   const handleSubmitEdit = () => {
     if (!editingStream) return;
+
+    // Check if editedStreamName is not null or undefined
+    if (!editedStreamName) {
+        alert("Please provide a valid stream name");
+        return;
+    }
+
     console.log(editedStreamName);
     fetch(`https://rurux-1.onrender.com/stream/edit/${editingStream.id}`, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name: editedStreamName }),
+        method: "PUT",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: editedStreamName }),
     })
-      .then((res) => {
+    .then((res) => {
         if (res.ok) {
-          fetchStreams();
-          setEditingStream(null);
-          setEditedStreamName("");
+            fetchStreams();
+            setEditingStream(null);
+            setEditedStreamName("");
         } else {
-          throw new Error("Network response was not ok");
+            // Check for specific error codes if available
+            if (res.status === 401) {
+                // Unauthorized error
+                throw new Error("Unauthorized access. Please login again.");
+            } else {
+                throw new Error("Failed to update stream. Please try again later.");
+            }
         }
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  };
+    })
+    .catch((err) => {
+        // Log the error to console for debugging purposes
+        console.error(err);
+        // Provide user-friendly error message
+        alert("An error occurred while updating the stream. Please try again later.");
+    });
+};
+
 
   const handleDelete = (id: number) => {
     fetch(`https://rurux-1.onrender.com/stream/delete/${id}`, {
