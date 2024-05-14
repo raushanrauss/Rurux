@@ -2,14 +2,18 @@ import React, { useContext, useEffect, useState } from "react";
 import { StudentContext, Stream, Subject } from "../../context/student";
 
 const Performance: React.FC = () => {
-  const [details, setDetails] = useState<{ name: string; stream: number; subject: number }>({ name: "", stream: 0, subject: 0 });
+  const [details, setDetails] = useState<{
+    name: string;
+    stream: number;
+    subject: number;
+  }>({ name: "", stream: 0, subject: 0 });
   const { streams, subjects } = useContext(StudentContext);
 
   const getDetails = () => {
     const token = localStorage.getItem("token");
     if (!token) return;
 
-    fetch("http://localhost:3000/user/performance", {
+    fetch("https://rurux-1.onrender.com/user/performance", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -29,8 +33,12 @@ const Performance: React.FC = () => {
     getDetails();
   }, []);
 
-  const streamName = streams.find((stream: Stream) => stream.id === details.stream)?.name;
-  const subjectName = subjects.find((subject: Subject) => subject.id === details.subject)?.name;
+  const streamName = streams.find(
+    (stream: Stream) => stream.id === details.stream
+  )?.name;
+  const subjectName = subjects.find(
+    (subject: Subject) => subject.id === details.subject
+  )?.name;
 
   return (
     <div>

@@ -38,7 +38,7 @@ export default function Auth(): JSX.Element {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (isSignUp) {
-      fetch("http://localhost:3000/user/register", {
+      fetch("https://rurux-1.onrender.com/user/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,7 +56,7 @@ export default function Auth(): JSX.Element {
         })
         .catch((err) => console.log(err));
     } else {
-      fetch("http://localhost:3000/user/login", {
+      fetch("https://rurux-1.onrender.com/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

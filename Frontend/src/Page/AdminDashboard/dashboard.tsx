@@ -11,9 +11,9 @@ interface Student {
 const Dashboard = () => {
   const [students, setStudents] = useState<Student[]>([]); // Specify Student[] as the type for students
   console.log(students);
-  
+
   useEffect(() => {
-    fetch("http://localhost:3000/studentList")
+    fetch("https://rurux-1.onrender.com/studentList")
       .then((res) => res.json())
       .then((res) => setStudents(res.students))
       .catch((err) => alert(err));

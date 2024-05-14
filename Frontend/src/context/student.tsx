@@ -7,7 +7,7 @@ function StudentContextProvider({ children }: { children: ReactNode }) {
   const [streams, setStreams] = useState<{ [key: string]: any }[]>([]);
   const [subjects, setSubjects] = useState<{ [key: string]: any }[]>([]);
   const getStreams = async () => {
-    fetch("http://localhost:3000/public/streams")
+    fetch("https://rurux-1.onrender.com/public/streams")
       .then((res) => res.json())
       .then((res) => {
         if (res.error) {
@@ -20,7 +20,7 @@ function StudentContextProvider({ children }: { children: ReactNode }) {
   };
 
   const getSubjects = async () => {
-    fetch("http://localhost:3000/public/subjects")
+    fetch("https://rurux-1.onrender.com/public/subjects")
       .then((res) => res.json())
       .then((res) => {
         if (res.error) {

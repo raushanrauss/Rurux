@@ -30,7 +30,7 @@ export default function AdminLogin(): JSX.Element {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    fetch("http://localhost:3000/admin/login", {
+    fetch("https://rurux-1.onrender.com/admin/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

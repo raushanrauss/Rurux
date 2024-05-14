@@ -23,7 +23,7 @@ const Marks: React.FC = () => {
   }, []);
 
   const fetchMarks = () => {
-    fetch("http://localhost:3000/mark/", {
+    fetch("https://rurux-1.onrender.com/mark/", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
       },
@@ -44,7 +44,7 @@ const Marks: React.FC = () => {
   };
 
   const handleDelete = (id: number) => {
-    fetch(`http://localhost:3000/mark/delete/${id}`, {
+    fetch(`https://rurux-1.onrender.com/mark/delete/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
@@ -69,7 +69,7 @@ const Marks: React.FC = () => {
   const handleSubmitEdit = () => {
     if (!editingMark) return;
 
-    fetch(`http://localhost:3000/mark/update/${editingMark.id}`, {
+    fetch(`https://rurux-1.onrender.com/mark/update/${editingMark.id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
@@ -91,7 +91,7 @@ const Marks: React.FC = () => {
   };
 
   const handleAddMark = () => {
-    fetch("http://localhost:3000/mark/add", {
+    fetch("https://rurux-1.onrender.com/mark/add", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",

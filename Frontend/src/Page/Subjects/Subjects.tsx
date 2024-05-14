@@ -19,7 +19,7 @@ const Subjects: React.FC = () => {
   }, []);
 
   const fetchSubjects = () => {
-    fetch("http://localhost:3000/subject/", {
+    fetch("https://rurux-1.onrender.com/subject/", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
       },
@@ -40,7 +40,7 @@ const Subjects: React.FC = () => {
   };
 
   const handleDelete = (id: number) => {
-    fetch(`http://localhost:3000/subject/delete/${id}`, {
+    fetch(`https://rurux-1.onrender.com/subject/delete/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
@@ -68,7 +68,7 @@ const Subjects: React.FC = () => {
     event.preventDefault();
     if (!editingSubject) return;
 
-    fetch(`http://localhost:3000/subject/update/${editingSubject.id}`, {
+    fetch(`https://rurux-1.onrender.com/subject/update/${editingSubject.id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
@@ -95,7 +95,7 @@ const Subjects: React.FC = () => {
   };
 
   const handleAddSubject = () => {
-    fetch("http://localhost:3000/subject/add", {
+    fetch("https://rurux-1.onrender.com/subject/add", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}` || "",
