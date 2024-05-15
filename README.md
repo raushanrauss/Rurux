@@ -7,3 +7,4 @@
  # Admin Crendential
  # Username : Admin
  # Password : Admin
+ Deployed link :- https://rurux-3k8x.vercel.app/
